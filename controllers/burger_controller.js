@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var burger = require('../models/burger.js');
 
-router.get('/', function (req, res) {
+router.get('/index', function (req, res) {
   burger.selectAll(function (data) {
     var hbsObject = {
       burgers: data
@@ -17,7 +17,7 @@ router.post('/burgers', function (req, res) {
       req.body.burger_name
     ], function () {
 
-      res.redirect('/');
+      res.redirect('/index');
     });
 });
 router.post('/burgers/:id', function (req, res) {
@@ -27,8 +27,7 @@ router.post('/burgers/:id', function (req, res) {
     devoured: true
   }
     , condition, function () {
-      console.log(req.params.Id)
-      res.redirect('/');
+      res.redirect('/index');
     });
 });
 module.exports = router;
